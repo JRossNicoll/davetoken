@@ -1,11 +1,18 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: #000000;
     color: #00FF00;
     font-family: monospace;
-    margin: 0;
+    line-height: 1.2;
     padding: 20px;
     min-height: 100vh;
-    font-size: 14px;
+    display: flex;
+    flex-direction: column;
 }
 
 #terminal {
@@ -14,21 +21,27 @@ body {
     margin: 0 auto;
 }
 
-.green-text {
+pre {
     color: #00FF00;
-}
-
-.blue-text {
-    color: #00BFFF;
+    font-size: 14px;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    white-space: pre;
 }
 
 .terminal-text {
     margin-top: 20px;
+    line-height: 1.6;
+}
+
+.terminal-text p {
+    margin-bottom: 5px;
 }
 
 #output {
     white-space: pre-line;
-    margin-top: 20px;
+    margin: 20px 0;
+    color: #00FF00;
 }
 
 .info-section {
@@ -40,11 +53,13 @@ body {
     align-items: center;
     gap: 8px;
     margin-bottom: 10px;
+    flex-wrap: wrap;
 }
 
 .social-links {
     display: flex;
     gap: 16px;
+    flex-wrap: wrap;
 }
 
 .social-link {
@@ -72,13 +87,14 @@ body {
     border: 1px solid #00FF00;
     padding: 2px 8px;
     text-decoration: none;
-    margin: 0 4px;
+    display: inline-block;
 }
 
 .input-line {
     margin-top: 20px;
     display: flex;
     gap: 8px;
+    align-items: center;
 }
 
 #terminal-input {
@@ -89,12 +105,31 @@ body {
     flex-grow: 1;
     font-family: monospace;
     font-size: 14px;
+    padding: 0;
 }
 
-a {
+.blue-text {
+    color: #00BFFF;
+}
+
+.green-text {
     color: #00FF00;
 }
 
-pre {
-    margin: 0;
+br {
+    display: block;
+    margin: 10px 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.prompt {
+    white-space: nowrap;
 }
