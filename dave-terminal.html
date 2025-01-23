@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$DAVE</title>
+    <style>
+        /* Embedding CSS directly in HTML for Wix compatibility */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+            color: #00FF00;
+            font-family: monospace;
+        }
+
+        #terminal {
+            padding: 20px;
+            min-height: 100vh;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .ascii-art {
+            color: #00FF00;
+            font-size: 14px;
+            white-space: pre;
+            margin: 0;
+        }
+
+        .terminal-content {
+            color: #00FF00;
+            margin-top: 20px;
+        }
+
+        .highlight {
+            color: #00BFFF;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .terminal-output {
+            color: #00FF00;
+            margin-top: 20px;
+            white-space: pre-line;
+        }
+
+        .contract-info {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .socials {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-link {
+            color: #00FF00;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+        }
+
+        .social-icon {
+            background-color: #00FF00;
+            color: black;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .label {
+            color: #00BFFF;
+        }
+
+        .link {
+            color: #00FF00;
+            text-decoration: none;
+        }
+
+        .cexes {
+            margin-top: 10px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .exchange-link {
+            color: #00FF00;
+            border: 1px solid #00FF00;
+            padding: 2px 8px;
+            text-decoration: none;
+            margin: 0 4px;
+        }
+
+        .terminal-input {
+            margin-top: 20px;
+            display: flex;
+            gap: 8px;
+        }
+
+        #command-input {
+            background-color: transparent;
+            border: none;
+            color: #00BFFF;
+            outline: none;
+            flex-grow: 1;
+            font-family: monospace;
+            font-size: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div id="terminal">
+        <pre id="dave-ascii" class="ascii-art"></pre>
+        
+        <div class="terminal-content">
+            <p>First there was Dave! Only to be awoken when needed the most.</p>
+            <p>For those who are 410 it's time to come back. Type: <span class="highlight">'secretdev'</span> to start the riddle</p>
+            <p>I will know who you are!</p>
+            <br>
+            <p>Type <span class="highlight">'help'</span> to see the list of available commands.</p>
+            <p>Type <span class="highlight">'sumfetch'</span> to display summary.</p>
+            <p>Type <span class="highlight">'tokenomics'</span> to understand the distribution.</p>
+            <p>Type <span class="highlight">'start'</span> to start the web</p>
+        </div>
+
+        <div id="sumfetch" class="hidden">
+            <pre id="dino-ascii" class="ascii-art"></pre>
+            <pre class="terminal-output">
+-----------------------------
+WHO AM I?
+-----------------------------
+Am I the creator of the memes or just a part of them?
+Am I the protocol or the transactions within it?
+If I exist on the blockchain, am I immutable?
+-----------------------------
+WHERE WE ARE?
+-----------------------------
+Error:410</pre>
+        </div>
+
+        <pre id="command-output" class="terminal-output"></pre>
+
+        <div class="contract-info">
+            <span class="label">Contract:</span>
+            <a href="https://etherscan.io/token/0xc328a59e7321747aebbc49fd28d1b32c1af8d3b2" class="link" target="_blank">
+                0xc328a59e7321747aebbc49fd28d1b32c1af8d3b2
+            </a>
+        </div>
+
+        <div class="socials">
+            <span class="label">Socials:</span>
+            <div class="social-links">
+                <a href="https://x.com/DaveTokenSOL" class="social-link" target="_blank">
+                    <span class="social-icon">X</span> Twitter
+                </a>
+                <a href="https://t.me/DaveTokenSOL" class="social-link" target="_blank">
+                    <span class="social-icon">T</span> Telegram
+                </a>
+                <a href="mailto:contact@davetoken.com" class="social-link">
+                    <span class="social-icon">@</span> Email
+                </a>
+            </div>
+        </div>
+
+        <div class="cexes">
+            <span class="label">CEXes: </span>
+            <span>Coming Soon! In the meanwhile you can buy on </span>
+            <a href="https://pump.fun" target="_blank" rel="noopener noreferrer" class="exchange-link">
+                pump.fun
+            </a>
+            <span> or </span>
+            <a href="https://raydium.io" target="_blank" rel="noopener noreferrer" class="exchange-link">
+                raydium
+            </a>
+        </div>
+
+        <div class="terminal-input">
+            <span id="prompt"></span>
+            <input type="text" id="command-input" spellcheck="false" autocomplete="off">
+        </div>
+    </div>
+
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    const daveAscii = `
+██████╗  █████╗ ██╗   ██╗███████╗
+██╔══██╗██╔══██╗██║   ██║██╔════╝
+██║  ██║███████║██║   ██║█████╗  
+██║  ██║██╔══██║╚██╗ ██╔╝██╔══╝  
+██████╔╝██║  ██║ ╚████╔╝ ███████╗
+╚═════╝ ╚═╝  ╚═╝  ╚═══╝  ╚══════╝
+`;
+
+    const dinoAscii = `
+           █████
+          ██████
+         ███████           ████
+        ████████          █████
+       █████████         ██████
+      ██████████        ███████
+     ███████████       ████████
+    ████████████      █████████
+   █████████████     ██████████
+  ██████████████    ███████████
+ ███████████████   ████████████
+████████████████  █████████████`;
+
+    // Initialize elements
+    const daveAsciiElem = document.getElementById('dave-ascii');
+    const dinoAsciiElem = document.getElementById('dino-ascii');
+    const sumfetchElem = document.getElementById('sumfetch');
+    const commandOutput = document.getElementById('command-output');
+    const commandInput = document.getElementById('command-input');
+    const promptElem = document.getElementById('prompt');
+
+    // Set ASCII art
+    daveAsciiElem.textContent = daveAscii;
+    dinoAsciiElem.textContent = dinoAscii;
+
+    // State variables
+    let riddleMode = false;
+    let showBeginPrompt = false;
+
+    // Update prompt with current time
+    function updatePrompt() {
+        const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+        promptElem.textContent = `[${time}]@guest:$ ~`;
+    }
+
+    // Initial prompt update
+    updatePrompt();
+    setInterval(updatePrompt, 1000);
+
+    // Command handler
+    function handleCommand(command) {
+        if (riddleMode) {
+            handleRiddleAnswer(command);
+            return;
+        }
+
+        switch(command.toLowerCase()) {
+            case 'secretdev':
+                commandOutput.textContent = `DAVE'S LOST KEYS
+-------------------------------
+Are you one of the 410? Prove it! Have a crack and solve all the 12 Questions. The prize at the end will grant you a magical phrase – a powerful key. Type 'begin' to start the journey.`;
+                showBeginPrompt = true;
+                sumfetchElem.classList.add('hidden');
+                break;
+            case 'begin':
+                if (showBeginPrompt) {
+                    riddleMode = true;
+                    commandOutput.textContent = "Riddle mode activated"; // You can add actual riddles here
+                } else {
+                    commandOutput.textContent = 'Unknown command. Try "help" for available commands.';
+                }
+                sumfetchElem.classList.add('hidden');
+                break;
+            case 'help':
+                commandOutput.textContent = `Type 'sumfetch' to display summary.
+Type 'tokenomics' to understand the distribution.
+Type 'start' to start the web
+Type 'analytics' to know the progress of your competitors`;
+                sumfetchElem.classList.add('hidden');
+                break;
+            case 'tokenomics':
+                commandOutput.textContent = `Token Name: Dave
+Total Supply: 1,000,000,000 $DAVE
+Decimals: 18
+Initial Market Cap: $10,000`;
+                sumfetchElem.classList.add('hidden');
+                break;
+            case 'analytics':
+                commandOutput.textContent = `RIDDLE 1  - 88 users have solved this riddle!
+RIDDLE 2  - 54 users have solved this riddle!
+RIDDLE 3  - 32 users have solved this riddle!
+RIDDLE 4  - 22 users have solved this riddle!
+RIDDLE 5  - 18 users have solved this riddle!
+RIDDLE 6  - 10 users have solved this riddle!
+RIDDLE 7  - 3 users have solved this riddle!
+RIDDLE 8  - 1 users have solved this riddle!
+RIDDLE 9  - 0 users have solved this riddle!
+RIDDLE 10 - 0 users have solved this riddle!
+RIDDLE 11 - 0 users have solved this riddle!
+RIDDLE 12 - be the first one to solve!`;
+                sumfetchElem.classList.add('hidden');
+                break;
+            case 'sumfetch':
+                sumfetchElem.classList.remove('hidden');
+                commandOutput.textContent = '';
+                break;
+            case '':
+                commandOutput.textContent = '';
+                sumfetchElem.classList.add('hidden');
+                break;
+            default:
+                commandOutput.textContent = `Command not found: ${command}`;
+                sumfetchElem.classList.add('hidden');
+        }
+    }
+
+    // Input handler
+    commandInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleCommand(commandInput.value);
+            commandInput.value = '';
+        }
+    });
+
+    // Focus input on load and when clicking anywhere in the terminal
+    commandInput.focus();
+    document.getElementById('terminal').addEventListener('click', () => {
+        commandInput.focus();
+    });
+});
+    </script>
+</body>
+</html>
